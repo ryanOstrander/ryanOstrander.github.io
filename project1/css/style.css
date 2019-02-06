@@ -1,0 +1,199 @@
+/* CSS Styles */
+
+h1{
+    -webkit-text-stroke-width:0.8px;
+    font-size: 40px;
+   -webkit-text-stroke-color: black;
+}
+
+h2{
+    -webkit-text-stroke-width: 0.8px;
+    font-size: 30px;
+   -webkit-text-stroke-color: black;
+}
+
+a{
+    -webkit-text-stroke-width: 0.4px;
+   -webkit-text-stroke-color: black;
+}
+
+p{
+    -webkit-text-stroke-width: 0.2px;
+   -webkit-text-stroke-color: black;
+}
+
+#page1 {
+    background-image: url("../images/cowboy-bebop-1.jpg");
+    -webkit-background-size: cover;
+    background-size: cover;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#page2 {
+    color: white;
+    background-image: url("../images/snow.gif");
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#page3 {
+    color: white;
+    background-image: url("../images/rain.gif");
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#page4 {
+    color: white;
+    background-image: url("../images/spaceGif.gif");
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#mainTitle{
+    position: relative;
+    padding: 20px;
+    font-size:58px;
+    color: black;
+    top: 20px;
+    right: 10px;
+    font-weight: bold;
+    
+}
+
+#mainTitle:hover{
+    color: white;
+}
+
+a:visited{
+    color: white;
+}
+
+a:hover{
+    color:black;
+}
+
+#spikeText{
+    position: relative;
+    bottom: 10px;
+}
+
+#characterPicsMain{
+    padding:1px;
+    border:6px solid #021a40;
+    background-color:black;
+}
+
+#subStory{
+    position: relative;
+    bottom: 22px;
+}
+
+.mainMenu{
+    padding: 30px;
+    direction:rtl;
+}
+
+.menuItems{
+    color: white;
+    position: relative;
+    bottom: 70px;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.wikiLink{
+    color: white;
+    position: relative;
+    bottom: 70px;
+    padding: 10px;
+    font-size: 14px;
+    top:120px;
+    right:270px;
+}
+
+.charText{
+    text-align: center;
+    width: 600px;
+    height: 100px;
+    border: 3px solid rgba(43, 39, 39, 0.733);
+    background-position: center;
+    background-size: cover;
+    background-color: #121e5e96;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.charTextJet{
+    text-align: center;
+    width: 600px;
+    height: 100px;
+    border: 3px solid rgba(43, 39, 39, 0.733);
+    background-position: center;
+    background-size: cover;
+    background-color: #121e5e96;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.charTextFaye{
+    text-align: center;
+    width: 600px;
+    height: 100px;
+    border: 3px solid rgba(43, 39, 39, 0.733);
+    background-position: center;
+    background-size: cover;
+    background-color: #121e5e96;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.storyText{
+    text-align: center;
+    width: 600px;
+    height: 100px;
+    border: 3px solid rgba(43, 39, 39, 0.733);
+    background-position: center;
+    background-size: cover;
+    background-color: #121e5e96;
+    padding: 25px;
+    margin: 0 auto;
+}
+
+.shipPics{
+    padding:1px;
+    border:1px solid #021a40;
+    background-color:black;
+}
+
+.row {
+    display: flex;
+  }
+  
+.column {
+    flex: 33.33%;
+    padding: 5px;
+}
+
+.edText{
+    position: relative;
+    bottom: 15px;
+}
+
+.viciousText{
+    position: relative;
+    bottom: 15px;
+}
+
+.redTailShip{
+    position: relative;
+    bottom: 10px;
+}
+
+.hammerheadShip{
+    position: relative;
+    bottom: 10px;
+}
+
+.bebopShip{
+    position: relative;
+    top: 5px;
+}
