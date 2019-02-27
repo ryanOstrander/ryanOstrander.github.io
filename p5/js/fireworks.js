@@ -10,6 +10,8 @@ let endY;
 let step = 0.0075;
 let pct = 0.0;
 
+let on = false;
+
 let counter = 0;
  
 function setup(){
@@ -51,7 +53,9 @@ function draw(){
     colorHeight(endY);
     textAlign(CENTER, CENTER)
     text('particles launched: ' + counter, width/2, 80);
-    launchFirework();
+    if (on) {
+        launchFirework();
+    }
 }
 
 function boom(x, y){
@@ -69,6 +73,7 @@ function boom(x, y){
 
 function createFirework(x, y){
     boom(x, y);
+    on = false;
 }
 
 function launchFirework(){
@@ -85,6 +90,8 @@ function launchFirework(){
         createFirework(x, y);
         pct = 0.0;
     }
+
+
 }
 
 //determine firework color
@@ -112,6 +119,7 @@ function colorHeight(y){
 
 //mouse press
 function mousePressed(){
+    on = true;
     pct = 0.0;
     endX = mouseX;
     endY = mouseY;
@@ -127,6 +135,7 @@ function keyPressed() {
 }
 
 function spacePressed() {
+    on = true;
     pct = 0.0;
     endX = random(20, width - 20);
     endY = random(20, (height*0.9));
