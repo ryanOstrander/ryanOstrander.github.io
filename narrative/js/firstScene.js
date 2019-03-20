@@ -17,15 +17,14 @@ function hideBeginning(){
 function workOnPres(){
     hideBeginning();
     hasSlept = false;
+    didStudy = true;
     computerImage1.show();
     myEnergy.decreaseEnergy(15);
     createElement('br');
     createElement('br');
-    createElement('br');
-    createElement('br');
     firstChoiceText = createP("You chose to keep working");
     clock.incHour(4);
-    setTimeout(startSecondScene, 4000);
+    setTimeout(startSecondScene, 3000);
 }
 
 function goToSleep(){
@@ -37,18 +36,16 @@ function goToSleep(){
     clock.incHour(6);
     createElement('br');
     createElement('br');
-    createElement('br');
-    createElement('br');
     firstChoiceText = createP("You chose to rest");
-    setTimeout(startSecondScene, 4000);
+    setTimeout(startSecondScene, 3000);
 }
 
 function drawOverlapComputer(){
     computerImage2.hide();
     computerImage1.show();
     computerImage1.position(width/3, height/4);
-    secondChoice = createA("#", "> Go to bed and rest up before class (+35 energy)");
-    firstChoice = createA("#", "> Work on your presentation for tomorrow (-20 energy)");
+    secondChoice = createA("#", "> Go to bed and rest up before class");
+    firstChoice = createA("#", "> Study for your test tomorrow");
 
     firstChoice.position(width/2 - 150, height * 6/8);
     secondChoice.position(width/2 - 150, height * 6/8 + 30);
@@ -60,7 +57,7 @@ function drawOverlapComputer(){
 function drawComputerScreenBackground(){
     computerImage2.show();
     computerImage2.position(width/3, height/4);
-    intro3 = createP("Do you...");
+    intro3 = createP("What do you do?");
 }
 
 function writeIntroText2(){
@@ -73,8 +70,8 @@ function startStory(){
     nameInput.hide();
 
     setTimeout(writeIntroText, 2000);
-    setTimeout(writeIntroText2, 3000);
-    setTimeout(drawUI, 3500);
+    setTimeout(writeIntroText2, 5000);
+    setTimeout(drawUI, 7000);
 }
 
 function drawUI(){

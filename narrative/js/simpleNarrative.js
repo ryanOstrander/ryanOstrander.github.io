@@ -6,20 +6,26 @@ var sleepImage;
 var firstChoice;
 var secondChoice;
 var gameHasBegun;
-var hasSlept;
-var presentationDone;
+var hasSlept = false;
+var didStudy = false;
+var backgroundColor = 0;
 
 function preload() {
     retroFont = loadFont('manaspc.ttf');
     computerImage1 = createImg("computer.gif");
     computerImage2 = createImg("computer2.gif");
     sleepImage = createImg("sleep.gif");
+    trainImage = createImg("train.gif");
+    coffeeImage = createImg("coffee.gif");
 }
 
 function setup(){
     canvas = createCanvas(windowWidth, windowHeight);
+    hasSlept = false;
     computerImage1.hide();
     computerImage2.hide();
+    trainImage.hide();
+    coffeeImage.hide();
     sleepImage.hide();
     canvas.position(0, 0);
     canvas.style('z-index', '-1');
@@ -31,7 +37,7 @@ function setup(){
 
 function draw(){
     if (gameHasBegun) {
-        background(0);
+        background(backgroundColor);
         drawGameArea();
         myEnergy.drawEnergyBar();
         myEnergy.update();
