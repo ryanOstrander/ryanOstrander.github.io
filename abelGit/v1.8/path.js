@@ -59,7 +59,6 @@ function Path(complexRoot, endRoot, screen){
             check4 = true;
             fourthPathDone = true;
             animationComplete = true;
-            noLoop();
         }
 
     }

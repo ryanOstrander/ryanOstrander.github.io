@@ -16,23 +16,8 @@ function Point(x, y, q){
         print("Quadrant: " + this.q);
     }
 
-    //updates the position 
-    this.update = function(endX, endY){
-        if (this.x < endX) {
-            this.x += step;
-        }
-        if (this.y < endY) {
-            this.y += step;
-        }
-        if (this.x > endX) {
-            this.x -= step;
-        }
-        if (this.y > endY) {
-            this.y -= step;
-        }
-
-        this.pointToPixel();
-    }
+    
+    
 
     /*translates the x and y to pixel coordinates
     to display on the canvas*/
@@ -131,48 +116,6 @@ function Point(x, y, q){
         this.y = newY;
 
         return;
-    }
-
-    function fits(q, pixelX, pixelY){
-        var screen = q;
-        var x1Bound;
-        var y1Bound;
-        var x2Bound;
-        var y2Bound;
-    
-        if (screen == 1) {
-            x1Bound = 500;
-            y1Bound = 0;
-            x2Bound = 1000;
-            y2Bound = 375; 
-        }
-    
-        if (screen == 2) {
-            x1Bound = 0;
-            y1Bound = 0;
-            x2Bound = 500;
-            y2Bound = 375; 
-        }
-    
-        if (screen == 3) {
-            x1Bound = 0;
-            y1Bound = 375;
-            x2Bound = 500;
-            y2Bound = 750; 
-        }
-    
-        if (screen == 4) {
-            x1Bound = 500;
-            y1Bound = 375;
-            x2Bound = 1000;
-            y2Bound = 750;  
-        }
-
-        if (pixelX < x2Bound && pixelX > x1Bound && pixelY < y2Bound && pixelY > y1Bound) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
 }

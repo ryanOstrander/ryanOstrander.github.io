@@ -36,22 +36,6 @@ function updateCoefficients(points){
 }
 
 
-
-//------FUNCTION TO ROUND ROOTS---------//
-
-function roundRoots(){
-
-  for (item in points) {
-
-    points[item].x = Math.round(points[item].x);
-    points[item].y = Math.round(points[item].y);
-
-  }
-
-}
-
-
-
 //------FUNCTION TO GET ORIGINAL COEFFICIENT POSITIONS---------//
 
 function catchOriginalCo() {
@@ -160,7 +144,7 @@ function calcFromCoef(a) {
   var calcPlot;
 
   //sqrt(4a0 + a1)/2
-  calcPoint = math.divide(math.add((math.multiply(4, a[0])), a[1]) , 2);
+  calcPoint = math.divide(math.subtract(math.add(math.multiply(4, a[0]), a[1]), math.multiply(a[2], a[3])), math.multiply(a[4] , 2));
   calculate4th(calcPoint);
 
   calcPlot = new Point(calcPoint.re, calcPoint.im, 3);
@@ -174,10 +158,13 @@ function calcFromCoef(a) {
 
 //------FUNCTION TO TRACE POINTS ON 4TH SCREEN---------//
 function storePath(calcPlot){
-  //save history every 3 frames
-  if ((frameCount % 3) == 0 && beginPath && !animationComplete) {
-    calcHistory.push([calcPlot.pixelX, calcPlot.pixelY]); 
-   }
+  if (fits(3, calcPlot.pixelX, calcPlot.pixelY)) {
+    //save history every 3 frames
+    if ((frameCount % 3) == 0 && beginPath && !animationComplete) {
+      calcHistory.push([calcPlot.pixelX, calcPlot.pixelY]); 
+    }
+  }
+
 }
 
 
@@ -266,32 +253,51 @@ function sketchAxis(){
 
 }
 
-//------FUNCTION TO RESET ALL HISTORIES---------//
+//------FUNCTION FOR COLLISION DETECTION---------//
 
-function resetHistories(){
-  s4z1HistP1 = [];
-  s4z1HistP2 = [];
-  s4z1HistP3 = [];
-  s4z1HistP4 = [];
-  s4z2HistP1 = [];
-  s4z2HistP2 = [];
-  s4z2HistP3 = [];
-  s4z2HistP4 = [];
-  s4z3HistP1 = [];
-  s4z3HistP2 = [];
-  s4z3HistP3 = [];
-  s4z3HistP4 = [];
-  s4z4HistP1 = [];
-  s4z4HistP2 = [];
-  s4z4HistP3 = [];
-  s4z4HistP4 = [];
-  s4z5HistP1 = [];
-  s4z5HistP2 = [];
-  s4z5HistP3 = [];
-  s4z5HistP4 = [];
-  calcHistory = [];
-  
+function fits(q, pixelX, pixelY){
+  var screen = q;
+  var x1Bound;
+  var y1Bound;
+  var x2Bound;
+  var y2Bound;
+
+  if (screen == 1) {
+      x1Bound = 500;
+      y1Bound = 0;
+      x2Bound = 1000;
+      y2Bound = 375; 
+  }
+
+  if (screen == 2) {
+      x1Bound = 0;
+      y1Bound = 0;
+      x2Bound = 500;
+      y2Bound = 375; 
+  }
+
+  if (screen == 3) {
+      x1Bound = 0;
+      y1Bound = 375;
+      x2Bound = 500;
+      y2Bound = 750; 
+  }
+
+  if (screen == 4) {
+      x1Bound = 500;
+      y1Bound = 375;
+      x2Bound = 1000;
+      y2Bound = 750;  
+  }
+
+  if (pixelX < x2Bound && pixelX > x1Bound && pixelY < y2Bound && pixelY > y1Bound) {
+      return true;
+  } else {
+      return false;
+  }
 }
+
+//------FUNCTION TO TRANSLATE PIXEL TO COMPLEX COORDINATE---------//
 
 function pixel2Point(pixelX, pixelY, screen){
   var newX;
