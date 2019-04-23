@@ -7,7 +7,7 @@ function Point(x, y, q){
     this.pixelX;
     this.pixelY;
 
-    var size = 15;
+    var size = 18;
 
     //log coordinates and quadrant
     this.displayCoords = function() {
@@ -75,21 +75,27 @@ function Point(x, y, q){
 
     //calls pointToPixel (function wrapper)
     this.plotPoint = function(varText){
-        //create a circle on the graph
-        stroke(255);
-        fill(color("purple"));
-        ellipse(this.pixelX, this.pixelY, size, size);
-        noStroke();
-        fill(255);
-        text(varText, this.pixelX + 15, this.pixelY - 15);
+
+        if (fits(this.q, this.pixelX, this.pixelY)) {
+            //create a circle on the graph
+            stroke(255);
+            fill(color("purple"));
+            ellipse(this.pixelX, this.pixelY, size, size);
+            noStroke();
+            fill(255);
+            text(varText, this.pixelX + 15, this.pixelY - 15);
+        }
+
     }
 
     this.plotOriginal = function(varText){
-        //create a circle on the graph
-        stroke(255);
-        fill(0, 3);
-        ellipse(this.pixelX, this.pixelY, size + 2, size + 2);
-        text(varText, this.pixelX + 15, this.pixelY - 15);
+        if (fits(this.q, this.pixelX, this.pixelY)) {
+            //create a circle on the graph
+            stroke(255);
+            fill(0, 3);
+            ellipse(this.pixelX, this.pixelY, size + 2, size + 2);
+            text(varText, this.pixelX + 15, this.pixelY - 15);
+        }
     }
 
     this.pixelToPoint = function(){
@@ -125,6 +131,48 @@ function Point(x, y, q){
         this.y = newY;
 
         return;
+    }
+
+    function fits(q, pixelX, pixelY){
+        var screen = q;
+        var x1Bound;
+        var y1Bound;
+        var x2Bound;
+        var y2Bound;
+    
+        if (screen == 1) {
+            x1Bound = 500;
+            y1Bound = 0;
+            x2Bound = 1000;
+            y2Bound = 375; 
+        }
+    
+        if (screen == 2) {
+            x1Bound = 0;
+            y1Bound = 0;
+            x2Bound = 500;
+            y2Bound = 375; 
+        }
+    
+        if (screen == 3) {
+            x1Bound = 0;
+            y1Bound = 375;
+            x2Bound = 500;
+            y2Bound = 750; 
+        }
+    
+        if (screen == 4) {
+            x1Bound = 500;
+            y1Bound = 375;
+            x2Bound = 1000;
+            y2Bound = 750;  
+        }
+
+        if (pixelX < x2Bound && pixelX > x1Bound && pixelY < y2Bound && pixelY > y1Bound) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

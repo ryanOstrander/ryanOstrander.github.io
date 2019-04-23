@@ -57,7 +57,6 @@ function roundRoots(){
 function catchOriginalCo() {
 
   originalCoefficients = coeffList;
-  print(originalCoefficients);
   catchOriginal = false;
 
 }
@@ -96,6 +95,7 @@ function plotOriginalCoefficients(){
 
 
 //------FUNCTION TO EVALUATE COEFFICIENTS GIVEN A SET OF COMPLEX SOLUTIONS Z---------//
+//------USES VIETA'S FORMULAS---------//
 
 function evalCoeffs(z){
   var coefficients = [];
@@ -163,27 +163,18 @@ function calcFromCoef(a) {
   calcPoint = math.divide(math.add((math.multiply(4, a[0])), a[1]) , 2);
   calculate4th(calcPoint);
 
-  //  very ugly
-  //  1/5root(a4^3*a2 + 7a1 - a0 + a3)
-  //  let innerRadical = math.add(math.subtract(math.add(math.multiply(math.pow(a[4], 3), a[2]), math.multiply(7, a[1])) , a[0]) , a[3]);
-  //  calcPoint = math.pow(innerRadical, 1/5);
-  //  calculate4th(calcPoint);
-
-
   calcPlot = new Point(calcPoint.re, calcPoint.im, 3);
 
   //save history every 10 frames
-  if ((frameCount % 3) == 0 && beginPath && !animationComplete) {
-   calcHistory.push([calcPlot.pixelX, calcPlot.pixelY]); 
-  }
+  storePath(calcPlot);
   
   return calcPlot;
 
 }
 
 //------FUNCTION TO TRACE POINTS ON 4TH SCREEN---------//
-function store4thPath(){
-  //save history every 10 frames
+function storePath(calcPlot){
+  //save history every 3 frames
   if ((frameCount % 3) == 0 && beginPath && !animationComplete) {
     calcHistory.push([calcPlot.pixelX, calcPlot.pixelY]); 
    }
@@ -213,87 +204,10 @@ function calculate4th(z){
     kPoints.push(new Point(real, imag, 4));
   }
 
-  let kSize = kPoints.length;
-
-  for (let i = 0; i < kSize; i++) {
-
-    kPoints[i].plotPoint("z" + (i+1));
-
-    if (!animationComplete && beginPath && !stopFirstHist) {
-
-      if ((frameCount % 8) == 0) {
-
-        if (i == 0) s4z1HistP1.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 1) s4z2HistP1.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 2) s4z3HistP1.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 3) s4z4HistP1.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 4) s4z5HistP1.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-
-       }
-
-    } else if (!animationComplete && beginPath && !stopSecondHist) {
-
-        if ((frameCount % 8) == 0) {
-
-          if (i == 0) s4z1HistP2.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-          if (i == 1) s4z2HistP2.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-          if (i == 2) s4z3HistP2.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-          if (i == 3) s4z4HistP2.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-          if (i == 4) s4z5HistP2.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-
-        }
-
-    } else if (!animationComplete && beginPath && !stopThirdHist) {
-
-      if ((frameCount % 8) == 0) {
-
-        if (i == 0) s4z1HistP3.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 1) s4z2HistP3.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 2) s4z3HistP3.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 3) s4z4HistP3.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-        if (i == 4) s4z5HistP3.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-
-      }
-
-  } else if (!animationComplete && beginPath && !stopFourthHist) {
-
-    if ((frameCount % 8) == 0) {
-
-      if (i == 0) s4z1HistP4.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-      if (i == 1) s4z2HistP4.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-      if (i == 2) s4z3HistP4.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-      if (i == 3) s4z4HistP4.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-      if (i == 4) s4z5HistP4.push([kPoints[i].pixelX, kPoints[i].pixelY]); 
-
-    }
-
-}
-    
-
-  }
+  fourthHistory(kPoints);
 
 }
 
-
-//------FUNCTION TO DRAW CALCULATION HISTORY---------//
-
-function drawHistory(history) {
-  var size = history.length;
-
-  strokeWeight(2);
-
-  if (size >= 2) {
-
-    //draw a line for every point in calculations history
-    for (let i = 0; i < size - 1; i++) {
-      line(history[i][0], history[i][1], history[i+1][0], history[i+1][1]);
-    }
-
-  }
-
-  strokeWeight(1);
-
-}
 
 
 //------FUNCTION TO DRAW AXIS ON CANVAS---------//
@@ -335,7 +249,7 @@ function sketchAxis(){
   line(498/2, 372 + 4, 498/2, height);
 
   textSize(14);
-  text(bottomLeftBound, 498 - 23, (height/4 - 5) * 3);
+  text(bottomLeftBound, 498 - 30, (height/4 - 5) * 3);
   text("-" + bottomLeftBound, 5, (height/4 - 5)*3);
   text(bottomLeftBound, 498/2 + 5, (height/2) + 20);
   text("-" + bottomLeftBound, 498/2 + 5, height - 5);
@@ -345,13 +259,68 @@ function sketchAxis(){
   line((498/2) * 3, 372 + 4, (498/2) * 3, height);
 
   textSize(14);
-  text(bottomRightBound, width - 20, (height/4 - 4)*3);
+  text(bottomRightBound, width - 30, (height/4 - 4)*3);
   text(bottomRightBound, (498/2)*3 + 5, height/2 + 20);
   text("-" + bottomRightBound, 498 + 10, (height/4 - 5)*3);
   text("-" + bottomRightBound, (498/2)*3 + 5 , height - 5);
 
 }
 
-function commutator(){
+//------FUNCTION TO RESET ALL HISTORIES---------//
 
+function resetHistories(){
+  s4z1HistP1 = [];
+  s4z1HistP2 = [];
+  s4z1HistP3 = [];
+  s4z1HistP4 = [];
+  s4z2HistP1 = [];
+  s4z2HistP2 = [];
+  s4z2HistP3 = [];
+  s4z2HistP4 = [];
+  s4z3HistP1 = [];
+  s4z3HistP2 = [];
+  s4z3HistP3 = [];
+  s4z3HistP4 = [];
+  s4z4HistP1 = [];
+  s4z4HistP2 = [];
+  s4z4HistP3 = [];
+  s4z4HistP4 = [];
+  s4z5HistP1 = [];
+  s4z5HistP2 = [];
+  s4z5HistP3 = [];
+  s4z5HistP4 = [];
+  calcHistory = [];
+  
+}
+
+function pixel2Point(pixelX, pixelY, screen){
+  var newX;
+  var newY;
+  var lineNum;
+  var startX = pixelX;
+  var startY = pixelY;
+
+  if (screen == 1) lineNum = topRightScale;
+  if (screen == 2) lineNum = topLeftScale;
+  if (screen == 3) lineNum = bottomLeftScale;
+  if (screen == 4) lineNum = bottomRightScale;
+
+  var scaleX = (498/2)/lineNum;
+  var scaleY = (372/2)/lineNum;
+  
+  if (screen == 1) {
+      newX = (startX - ((498*3)/2))/scaleX;
+      newY = (startY - (372/2))/scaleY * -1;
+  } else if (screen == 2) {
+      newX = (startX - (498/2))/scaleX;
+      newY = (startY - (372/2))/scaleY * -1;
+  } else if (screen == 3) {
+      newX = (startX - (498/2))/scaleX;
+      newY = (startY - (372/2) * 3)/scaleY * -1;
+  } else if (screen == 4) {
+      newX = (startX - (498/2) * 3)/scaleX;
+      newY = (startY - (372/2) * 3)/scaleY * -1;
+  }
+
+  return new math.complex(newX, newY);
 }

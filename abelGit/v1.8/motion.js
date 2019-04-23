@@ -2,6 +2,8 @@
 
 function Motion(r1, r2, r3, r4, r5){
     
+    points = [];
+
     var path1 = new Path(r1, r5, 1);
     var path2 = new Path(r2, r1, 1);
     var path3 = new Path(r3, r2, 1);
@@ -10,8 +12,6 @@ function Motion(r1, r2, r3, r4, r5){
 
     var allPaths = [path1, path2, path3, path4, path5];
     var newLocations;
-
-
 
     //plot the paths
     this.plot = function(){

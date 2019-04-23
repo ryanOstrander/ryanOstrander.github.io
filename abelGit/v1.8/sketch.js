@@ -223,37 +223,76 @@ function keyPressed(){
     resetHistories();
     motion = new Motion(root1, root2, root3, root4, root5);
   }
-
-  if (keyCode === UP_ARROW ) {
-    topLeftScale += 0.1;
-  }
-  if (keyCode === DOWN_ARROW ) {
-    topLeftScale -= 0.1;
-  }
   
 }
 
-function resetHistories(){
-  s4z1HistP1 = [];
-  s4z1HistP2 = [];
-  s4z1HistP3 = [];
-  s4z1HistP4 = [];
-  s4z2HistP1 = [];
-  s4z2HistP2 = [];
-  s4z2HistP3 = [];
-  s4z2HistP4 = [];
-  s4z3HistP1 = [];
-  s4z3HistP2 = [];
-  s4z3HistP3 = [];
-  s4z3HistP4 = [];
-  s4z4HistP1 = [];
-  s4z4HistP2 = [];
-  s4z4HistP3 = [];
-  s4z4HistP4 = [];
-  s4z5HistP1 = [];
-  s4z5HistP2 = [];
-  s4z5HistP3 = [];
-  s4z5HistP4 = [];
-  calcHistory = [];
-  
+ptList = [];
+
+function mouseClicked() {
+  if (mouseX > 500 && mouseY < 375) {
+    stroke(255);
+    fill(255);
+    test = pixel2Point(mouseX, mouseY, 1);
+    ptList.push(test);
+    print(ptList);
+    
+    if (ptList.length == 5) {
+      root1 = ptList[0];
+      root2 = ptList[1];
+      root3 = ptList[2];
+      root4 = ptList[3];
+      root5 = ptList[4];
+
+      motion = new Motion(ptList[0], ptList[1], ptList[2], ptList[3], ptList[4]);
+      originalPoints = [];
+      
+      for (item in ptList) {
+        let newPoint = new Point(ptList[item].re, ptList[item].im, 1);
+        originalPoints.push(newPoint);
+      }
+
+      coeffList = [];
+      coeffList = evalCoeffs(updateCoefficients(points));
+      catchOriginalCo();
+      plotOriginalCoefficients();
+      ptList = [];
+    }
+
+  }
+}
+
+function mouseWheel(event){
+  if (mouseX < 500 && mouseY < 375) {
+    if (event.delta > 0) {
+      topLeftScale += 0.01;
+    }
+    if (event.delta < 0) {
+      topLeftScale -= 0.01;
+    }
+    topLeftBound = Math.round(100*topLeftScale)/100;
+    topLeftBound = topLeftBound.toString();
+  }
+
+  if (mouseX < 500 && mouseY > 375) {
+    if (event.delta > 0) {
+      bottomLeftScale += 0.01;
+    }
+    if (event.delta < 0) {
+      bottomLeftScale -= 0.01;
+    }
+    bottomLeftBound = Math.round(100*bottomLeftScale)/100;
+    bottomLeftBound = bottomLeftBound.toString();
+  }
+
+  if (mouseX > 500 && mouseY > 375) {
+    if (event.delta > 0) {
+      bottomRightScale += 0.01;
+    }
+    if (event.delta < 0) {
+      bottomRightScale -= 0.01;
+    }
+    bottomRightBound = Math.round(100*bottomRightScale)/100;
+    bottomRightBound = bottomRightBound.toString();
+  }
+
 }
