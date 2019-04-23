@@ -118,4 +118,18 @@ function Point(x, y, q){
         return;
     }
 
+    //calls pointToPixel (function wrapper)
+    this.plotPoten = function(varText){
+
+        if (fits(this.q, this.pixelX, this.pixelY)) {
+            //create a circle on the graph
+            stroke(color('red'));
+            fill(0);
+            ellipse(this.pixelX, this.pixelY, size, size);
+            noStroke();
+            fill(color('red'));
+            text(varText, this.pixelX + 15, this.pixelY - 15);
+        }
+
+    }
 }

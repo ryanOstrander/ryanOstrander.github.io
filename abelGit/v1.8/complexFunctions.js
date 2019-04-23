@@ -329,4 +329,17 @@ function pixel2Point(pixelX, pixelY, screen){
   }
 
   return new math.complex(newX, newY);
+
+}
+
+function plotPotential(){
+  let c = 1;
+
+  for (point in ptList) {
+    fill(0);
+    stroke(color('red'));
+    var potential = new Point(ptList[point].re, ptList[point].im, 1);
+    potential.plotPoten("z" + c);
+    c++;
+  }
 }

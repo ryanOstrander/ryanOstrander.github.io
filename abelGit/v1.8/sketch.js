@@ -77,7 +77,7 @@ function setup() {
   //create the canvis 500 x 500 pixels
   var canvas = createCanvas(1000, 750);
 
-  canvas.position(250, 200);
+  canvas.position(250, 60);
   canvas.parent('sketch-holder');
 
   //save the original root positions
@@ -106,6 +106,8 @@ function draw() {
   //creates the axis
   sketchAxis();
 
+  //plot potential
+  plotPotential();
 
   //------MOTIONS---------//
 
@@ -141,16 +143,7 @@ function draw() {
     stopThirdHist = true;
   }
 
-  //------COEFFICIENTS---------//
-
-  //coefficient list
-  coeffList = evalCoeffs(updateCoefficients(points));
-  plotCoefficients();
-
-  calculation = calcFromCoef(coeffList);
-  calculation.plotPoint("f(a0, a1)");
-  
-   //------DRAW ALL HISTORIES---------//
+  //------DRAW ALL HISTORIES---------//
 
   stroke(255);
   drawHistory(calcHistory);
@@ -182,6 +175,15 @@ function draw() {
   drawHistory(s4z3HistP4);
   drawHistory(s4z4HistP4);
   drawHistory(s4z5HistP4);
+
+  //------COEFFICIENTS---------//
+
+  //coefficient list
+  coeffList = evalCoeffs(updateCoefficients(points));
+  plotCoefficients();
+
+  calculation = calcFromCoef(coeffList);
+  calculation.plotPoint("f(a0, a1)");
   
 
   //catch the original coefficient list to plot their original trace
@@ -196,13 +198,15 @@ function draw() {
 
 //------USER CONTROL---------//
 
-function keyPressed(){
+function keyPressed(event){
 
   //if spacebar is pressed
   if (key == " " && beginPath == false) {
+    event.preventDefault();
     beginPath = true;
     print("beginPath set to true!");
   } else if (key == " " && beginPath) {
+    event.preventDefault();
     beginPath = false;
     firstPathDone = false;
     startSecondPath = false;
@@ -230,11 +234,8 @@ ptList = [];
 
 function mouseClicked() {
   if (mouseX > 500 && mouseY < 375) {
-    stroke(255);
-    fill(255);
     test = pixel2Point(mouseX, mouseY, 1);
     ptList.push(test);
-    print(ptList);
     
     if (ptList.length == 5) {
       root1 = ptList[0];
@@ -262,34 +263,35 @@ function mouseClicked() {
 }
 
 function mouseWheel(event){
-  if (mouseX < 500 && mouseY < 375) {
+  event.preventDefault();
+  if (mouseX < 500 && mouseY < 375 && mouseX > 0 && mouseY > 0) {
     if (event.delta > 0) {
-      topLeftScale += 0.01;
+      topLeftScale -= 0.01;
     }
     if (event.delta < 0) {
-      topLeftScale -= 0.01;
+      topLeftScale += 0.01;
     }
     topLeftBound = Math.round(100*topLeftScale)/100;
     topLeftBound = topLeftBound.toString();
   }
 
-  if (mouseX < 500 && mouseY > 375) {
+  if (mouseX < 500 && mouseY > 375 && mouseX > 0 && mouseY < height) {
     if (event.delta > 0) {
-      bottomLeftScale += 0.01;
+      bottomLeftScale -= 0.01;
     }
     if (event.delta < 0) {
-      bottomLeftScale -= 0.01;
+      bottomLeftScale += 0.01;
     }
     bottomLeftBound = Math.round(100*bottomLeftScale)/100;
     bottomLeftBound = bottomLeftBound.toString();
   }
 
-  if (mouseX > 500 && mouseY > 375) {
+  if (mouseX > 500 && mouseY > 375 && mouseX < width && mouseY < height) {
     if (event.delta > 0) {
-      bottomRightScale += 0.01;
+      bottomRightScale -= 0.01;
     }
     if (event.delta < 0) {
-      bottomRightScale -= 0.01;
+      bottomRightScale += 0.01;
     }
     bottomRightBound = Math.round(100*bottomRightScale)/100;
     bottomRightBound = bottomRightBound.toString();
