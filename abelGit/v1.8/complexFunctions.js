@@ -263,31 +263,31 @@ function fits(q, pixelX, pixelY){
   var y2Bound;
 
   if (screen == 1) {
-      x1Bound = 500;
-      y1Bound = 0;
-      x2Bound = 1000;
-      y2Bound = 375; 
+      x1Bound = 500 + 9;
+      y1Bound = 0 + 9;
+      x2Bound = 1000 - 9;
+      y2Bound = 375 - 9; 
   }
 
   if (screen == 2) {
-      x1Bound = 0;
-      y1Bound = 0;
-      x2Bound = 500;
-      y2Bound = 375; 
+      x1Bound = 0 + 9;
+      y1Bound = 0 + 9;
+      x2Bound = 500 - 9;
+      y2Bound = 375 - 9; 
   }
 
   if (screen == 3) {
-      x1Bound = 0;
-      y1Bound = 375;
-      x2Bound = 500;
-      y2Bound = 750; 
+      x1Bound = 0 + 9;
+      y1Bound = 375 + 9;
+      x2Bound = 500 - 9;
+      y2Bound = 750 - 9; 
   }
 
   if (screen == 4) {
-      x1Bound = 500;
-      y1Bound = 375;
-      x2Bound = 1000;
-      y2Bound = 750;  
+      x1Bound = 500 + 9;
+      y1Bound = 375 + 9;
+      x2Bound = 1000 - 9;
+      y2Bound = 750 - 9;  
   }
 
   if (pixelX < x2Bound && pixelX > x1Bound && pixelY < y2Bound && pixelY > y1Bound) {
@@ -336,7 +336,7 @@ function plotPotential(){
   let c = 1;
 
   for (point in ptList) {
-    fill(0);
+    fill(30);
     stroke(color('red'));
     var potential = new Point(ptList[point].re, ptList[point].im, 1);
     potential.plotPoten("z" + c);

@@ -68,6 +68,7 @@ function Point(x, y, q){
             ellipse(this.pixelX, this.pixelY, size, size);
             noStroke();
             fill(255);
+            textSize(18);
             text(varText, this.pixelX + 15, this.pixelY - 15);
         }
 
@@ -128,6 +129,7 @@ function Point(x, y, q){
             ellipse(this.pixelX, this.pixelY, size, size);
             noStroke();
             fill(color('red'));
+            textSize(18 );
             text(varText, this.pixelX + 15, this.pixelY - 15);
         }
 

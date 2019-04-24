@@ -76,8 +76,6 @@ function setup() {
 
   //create the canvis 500 x 500 pixels
   var canvas = createCanvas(1000, 750);
-
-  canvas.position(250, 60);
   canvas.parent('sketch-holder');
 
   //save the original root positions
@@ -96,7 +94,7 @@ function setup() {
 
 function draw() {
   //reset the background
-  background(0);
+  background(25);
 
   //plot original point traces
   for (item in originalPoints) {
