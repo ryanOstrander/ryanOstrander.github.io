@@ -64,7 +64,7 @@ function Point(x, y, q){
         if (fits(this.q, this.pixelX, this.pixelY)) {
             //create a circle on the graph
             stroke(255);
-            fill(color("purple"));
+            fill(color('#9a47e8'));
             ellipse(this.pixelX, this.pixelY, size, size);
             noStroke();
             fill(255);

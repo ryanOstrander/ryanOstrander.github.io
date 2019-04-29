@@ -30,11 +30,20 @@
 
 #mclLogo {
 	max-width: 12%;
-	height:auto;
+    height:auto;
+    position: relative;
 }
 
 #titleText{
     font-size: 38px; 
     color: black;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+#centerScreen{
+    height: 900px;
+    width: 60%;
+    background-color: gray;
+    text-align: center;
+    margin: 0 auto;
 }

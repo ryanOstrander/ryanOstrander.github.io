@@ -76,6 +76,7 @@ function setup() {
 
   //create the canvis 500 x 500 pixels
   var canvas = createCanvas(1000, 750);
+  
   canvas.parent('sketch-holder');
 
   //save the original root positions
@@ -181,7 +182,7 @@ function draw() {
   plotCoefficients();
 
   calculation = calcFromCoef(coeffList);
-  calculation.plotPoint("f(a0, a1)");
+  calculation.plotPoint("f(a0, a1, a2, a3, a4)");
   
 
   //catch the original coefficient list to plot their original trace
