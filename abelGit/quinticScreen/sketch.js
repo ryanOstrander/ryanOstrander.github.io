@@ -77,7 +77,6 @@ function setup() {
   //create the canvis 500 x 500 pixels
   var canvas = createCanvas(1000, 750);
 
-  canvas.position(250, 50);
   canvas.parent('sketch-holder');
 
   //save the original root positions
