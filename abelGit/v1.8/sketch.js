@@ -27,7 +27,7 @@ var root3 = math.complex('0.675 - 0.25i');
 var root4 = math.complex('-0.75 - 0.5i'); 
 var root5 = math.complex('0.35 + 0.333i'); 
 
-var motion = new Motion(root1, root2, root3, root4, root5);
+var motion;
 
 //------LISTS---------//
 var complexRootList = [root1, root2, root3, root4, root5];
@@ -66,6 +66,7 @@ var stopFirstHist, stopSecondHist, stopThirdHist, stopFourthHist = false;
 var changeColor1 = false;
 
 var animationComplete = false;
+var canvas;
 
 
 
@@ -73,9 +74,12 @@ var animationComplete = false;
 
 
 function setup() {
+  motion = new Motion(root1, root2, root3, root4, root5);
+  originalPoints = [];
+  print(complexRootList);
 
   //create the canvis 500 x 500 pixels
-  var canvas = createCanvas(1000, 750);
+  canvas = createCanvas(1000, 750);
   
   canvas.parent('sketch-holder');
 
@@ -84,8 +88,41 @@ function setup() {
     let newPt = new Point(complexRootList[i].re,complexRootList[i].im , 1);
     originalPoints.push(newPt);
   }
-  
 
+  beginPath = false;
+  catchOriginal = true;
+  calcHistory = [];
+  coeffList = [];
+  originalCoefficients = [];
+  s4z1HistP1 = [];
+  s4z1HistP2 = [];
+  s4z1HistP3 = [];
+  s4z1HistP4 = [];
+  s4z2HistP1 = [];
+  s4z2HistP2 = [];
+  s4z2HistP3 = [];
+  s4z2HistP4 = [];
+  s4z3HistP1 = [];
+  s4z3HistP2 = [];
+  s4z3HistP3 = [];
+  s4z3HistP4 = [];
+  s4z4HistP1 = [];
+  s4z4HistP2 = [];
+  s4z4HistP3 = [];
+  s4z4HistP4 = [];
+  s4z5HistP1 = [];
+  s4z5HistP2 = [];
+  s4z5HistP3 = [];
+  s4z5HistP4 = [];
+  firstPathDone = false;
+  secondPathDone = false;
+  thirdPathDone = false;
+  fourthPathDone = false;
+  startSecondPath = false;
+  startThirdPath = false;
+  startFourthPath = false;
+  stopFirstHist, stopSecondHist, stopThirdHist, stopFourthHist = false;
+  animationComplete = false;
 }
 
 
@@ -216,15 +253,11 @@ function keyPressed(event){
 
   if (key == "r") {
     print("reset");
-    beginPath = false;
-    firstPathDone = false;
-    secondPathDone = false;
-    thirdPathDone = false;
-    startSecondPath = false;
-    startThirdPath = false;
-    startFourthPath = false;
-    resetHistories();
-    motion = new Motion(root1, root2, root3, root4, root5);
+    setup();
+  }
+
+  if (key == "s") {
+    saveCanvas(canvas, 'art.jpg');
   }
   
 }
@@ -242,6 +275,7 @@ function mouseClicked() {
       root3 = ptList[2];
       root4 = ptList[3];
       root5 = ptList[4];
+      complexRootList = [root1, root2, root3, root4, root5];
 
       motion = new Motion(ptList[0], ptList[1], ptList[2], ptList[3], ptList[4]);
       originalPoints = [];
@@ -254,7 +288,6 @@ function mouseClicked() {
       coeffList = [];
       coeffList = evalCoeffs(updateCoefficients(points));
       catchOriginalCo();
-      plotOriginalCoefficients();
       ptList = [];
     }
 
