@@ -41,7 +41,7 @@
 }
 
 #centerScreen{
-    height: 1000px;
+    height: 1200px;
     width: 80%;
     color: black;
 
@@ -66,6 +66,15 @@
 #navContainer ul li{
     color: black;
     display: inline;
+}
+
+#textWrapper{
+    position: relative;
+    align-content: center;
+    text-align: center;
+    margin: 0 auto;
+    width: 800px;
+    background-color:  rgba(162, 143, 143, 0.2);
 }
 
 a{

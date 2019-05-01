@@ -41,7 +41,7 @@
 }
 
 #centerScreen{
-    height: 1300px;
+    height: 1200px;
     width: 80%;
     color: black;
 
@@ -73,7 +73,8 @@
     align-content: center;
     text-align: center;
     margin: 0 auto;
-    width: 650px;
+    width: 800px;
+    background-color:  rgba(162, 143, 143, 0.2);
 }
 
 a{
