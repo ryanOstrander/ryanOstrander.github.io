@@ -173,7 +173,7 @@ function calcFromCoef(a) {
   calcPlot = new Point(calcPoint.re, calcPoint.im, 3);
 
   //save history every 10 frames
-  if ((frameCount % 2) == 0 && beginPath && !animationComplete) {
+  if ((frameCount % 6) == 0 && beginPath && !animationComplete) {
    calcHistory.push([calcPlot.pixelX, calcPlot.pixelY]); 
   }
   
@@ -184,7 +184,7 @@ function calcFromCoef(a) {
 //------FUNCTION TO TRACE POINTS ON 4TH SCREEN---------//
 function store4thPath(){
   //save history every 10 frames
-  if ((frameCount % 3) == 0 && beginPath && !animationComplete) {
+  if ((frameCount % 6) == 0 && beginPath && !animationComplete) {
     calcHistory.push([calcPlot.pixelX, calcPlot.pixelY]); 
    }
 }
