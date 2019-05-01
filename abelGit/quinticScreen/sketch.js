@@ -201,7 +201,9 @@ function keyPressed(){
   if (key == " " && beginPath == false) {
     beginPath = true;
     print("beginPath set to true!");
+    event.preventDefault();
   } else if (key == " " && beginPath) {
+    event.preventDefault();
     beginPath = false;
     firstPathDone = false;
     startSecondPath = false;

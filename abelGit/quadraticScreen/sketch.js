@@ -81,6 +81,24 @@ function setup() {
     originalPoints.push(newPt);
   }
   
+  beginPath = false;
+  catchOriginal = true;
+  calcHistory = [];
+  coeffList = [];
+  originalCoefficients = [];
+  z1Hist = [];
+  z2Hist = [];
+  a0Hist = [];
+  a1Hist = [];
+  firstPathDone = false;
+  secondPathDone = false;
+  thirdPathDone = false;
+  fourthPathDone = false;
+  startSecondPath = false;
+  startThirdPath = false;
+  startFourthPath = false;
+  stopFirstHist, stopSecondHist, stopThirdHist, stopFourthHist = false;
+  animationComplete = false;
 
 }
 
@@ -203,9 +221,11 @@ function keyPressed(){
 
   //if spacebar is pressed
   if (key == " " && beginPath == false) {
+    event.preventDefault();
     beginPath = true;
     print("beginPath set to true!");
   } else if (key == " " && beginPath) {
+    event.preventDefault();
     beginPath = false;
     firstPathDone = false;
     startSecondPath = false;

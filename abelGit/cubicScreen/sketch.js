@@ -214,10 +214,12 @@ function keyPressed(){
 
   //if spacebar is pressed
   if (key == " " && beginPath == false) {
+    event.preventDefault();
     beginPath = true;
     print("beginPath set to true!");
     loop();
   } else if (key == " " && beginPath) {
+    event.preventDefault();
     beginPath = false;
     firstPathDone = false;
     startSecondPath = false;
