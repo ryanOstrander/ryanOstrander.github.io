@@ -11,10 +11,9 @@ function Motion(r1, r2, r3, r4, r5){
     var allPaths = [path1, path2, path3, path4, path5];
     var newLocations;
 
-
-
     //plot the paths
     this.plot = function(){
+        
         let count = 0;
 
         for (path in allPaths) {

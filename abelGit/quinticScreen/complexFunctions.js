@@ -16,8 +16,6 @@ function mltCmp(eq1, eq2) {
     return newRoot;
     
   }
-
-
   
 //------FUNCTION TO RETURN AN UPDATED COEFFICIENT LIST---------//
 
@@ -168,7 +166,6 @@ function calcFromCoef(a) {
   //  let innerRadical = math.add(math.subtract(math.add(math.multiply(math.pow(a[4], 3), a[2]), math.multiply(7, a[1])) , a[0]) , a[3]);
   //  calcPoint = math.pow(innerRadical, 1/5);
   //  calculate4th(calcPoint);
-
 
   calcPlot = new Point(calcPoint.re, calcPoint.im, 3);
 
